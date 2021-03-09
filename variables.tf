@@ -1,5 +1,5 @@
 variable "name" {
-  default = "tfscore"
+  default = "happy-cloud"
 }
 
 variable "cidr" {
@@ -8,4 +8,12 @@ variable "cidr" {
 
 variable "region" {
   default = "us-east-2"
+}
+
+variable "create_key_pair" {
+  default = true
+}
+
+variable "key_pair_public_key" {
+  default = ""
 }
