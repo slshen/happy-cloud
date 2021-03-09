@@ -1,6 +1,6 @@
 module "jumpbox_sg" {
   source              = "terraform-aws-modules/security-group/aws"
-  name                = "jumpbox"
+  name                = "${var.name}-jumpbox"
   vpc_id              = module.vpc.vpc_id
   ingress_cidr_blocks = ["0.0.0.0/0"]
   ingress_rules       = ["ssh-tcp", "all-icmp"]
@@ -10,7 +10,7 @@ module "jumpbox_sg" {
 
 module "jump_access_sg" {
   source              = "terraform-aws-modules/security-group/aws"
-  name                = "jumpbox_access"
+  name                = "${var.name}-jumpbox_access"
   vpc_id              = module.vpc.vpc_id
   ingress_with_source_security_group_id = [
     {
@@ -33,7 +33,7 @@ module "jumpbox_role" {
   create_instance_profile = true
   role_requires_mfa = false
   attach_readonly_policy = true
-  role_name         = "jumpbox"
+  role_name         = "${var.name}-jumpbox"
 }
 
 module "jumpbox_fleet" {
@@ -54,7 +54,7 @@ EOF
 }
 
 resource "aws_iam_policy" "jumpbox_ec2_connect" {
-  name        = "jumpbox-ec2-connect"
+  name        = "${var.name}-jumpbox-ec2-connect"
   description = "Allow EC2 Connect"
   policy = <<EOF
 {

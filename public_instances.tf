@@ -1,6 +1,6 @@
 module "public_instance_sg" {
   source              = "terraform-aws-modules/security-group/aws"
-  name                = "public_instance"
+  name                = "${var.name}-public_instance"
   vpc_id              = module.vpc.vpc_id
   ingress_cidr_blocks = ["0.0.0.0/0"]
   ingress_rules       = ["all-icmp"]
@@ -29,7 +29,7 @@ module "public_instance_role" {
   create_instance_profile = true
   role_requires_mfa = false
   attach_readonly_policy = true
-  role_name         = "public_instance"
+  role_name         = "${var.name}-public_instance"
 }
 
 module "public_fleet" {
