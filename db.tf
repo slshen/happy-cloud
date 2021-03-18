@@ -17,7 +17,6 @@ module "db" {
   apply_immediately   = true
   storage_encrypted   = true
   allowed_security_groups = [ module.db_access_sg.this_security_group_id ]
-  allowed_cidr_blocks             = ["0.0.0.0/0"]
   db_subnet_group_name = module.vpc.database_subnet_group_name 
   replica_count = 0
   scaling_configuration = {
