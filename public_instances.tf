@@ -3,7 +3,7 @@ module "public_instance_sg" {
   name                = "${var.name}-public_instance"
   vpc_id              = module.vpc.vpc_id
   ingress_cidr_blocks = ["0.0.0.0/0"]
-  ingress_rules       = ["all-icmp"]
+  ingress_rules       = ["all-icmp","ssh-tcp"]
   egress_cidr_blocks  = ["0.0.0.0/0"]
   egress_ipv6_cidr_blocks = []
   egress_rules        = ["all-all"]
